@@ -70,22 +70,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Latitude: ", latitude);
 
                  /*------- To get city name from coordinates -------- */
-                String cityName = null;
+                String cityName = null,subLocality = null;
                 Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
                 List<Address> addresses;
                 try {
                     addresses = gcd.getFromLocation(location.getLatitude(),
                             location.getLongitude(), 1);
                     if (addresses.size() > 0) {
-                        System.out.println(addresses.get(0).getLocality());
                         cityName = addresses.get(0).getLocality();
+                        subLocality = addresses.get(0).getSubLocality();
                     }
                 }
                 catch (IOException e) {
                     e.printStackTrace();
                 }
-                String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
-                        + cityName;
+                String s = longitude + "\n" + latitude + "\n\nMy Current City is: "+
+                subLocality+" , "+ cityName;
                 mTextMessage.setText(s);
 
             }
